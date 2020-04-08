@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Android_2.1.1</string>
+    <string name="input_money_hint">Ввод денег</string>
+    <string name="input_info_hint">Информация об оплате</string>
+    <string name="btnOk">OK</string>
+    <string name="bank_card_chkBx">С банковской карты</string>
+    <string name="mobile_phone_chkBx">С мобильного телефона</string>
+    <string name="cash_address_chkBx">Наличными по адресу</string>
+    <string name="input_money_error">Введено не число!</string>
+    <string name="input_empty_error">Значение не введено!</string>
+</resources>
