@@ -19,14 +19,29 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox mBankCardChkBx;
     private CheckBox mMobilePhoneChkBx;
     private CheckBox mCashAddressChkBx;
-    private String inputInfo;
-    private int inputMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+
+        mBtnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                   int inputMoney = Integer.parseInt((mInputMoney.getText().toString()));
+                   String inputInfo = mInputInfo.getText().toString();
+                    if (inputInfo.isEmpty()) {
+                        Toast.makeText(MainActivity.this, R.string.input_empty_error, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, inputMoney + " " + inputInfo, Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, R.string.input_money_error, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -65,28 +80,6 @@ public class MainActivity extends AppCompatActivity {
         mBankCardChkBx.setOnCheckedChangeListener(checkedChangeListener);
         mMobilePhoneChkBx.setOnCheckedChangeListener(checkedChangeListener);
         mCashAddressChkBx.setOnCheckedChangeListener(checkedChangeListener);
-
-        mBtnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    inputMoney = Integer.parseInt((mInputMoney.getText().toString()));
-                    if (inputMoney == 0) {
-                        Toast.makeText(MainActivity.this, R.string.input_empty_error, Toast.LENGTH_SHORT);
-                    }
-                    inputInfo = mInputInfo.getText().toString();
-                    if (inputInfo.equals("")) {
-                        Toast.makeText(MainActivity.this, R.string.input_empty_error, Toast.LENGTH_SHORT);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, R.string.input_money_error, Toast.LENGTH_SHORT);
-                } finally {
-                    Toast.makeText(MainActivity.this, inputMoney + " " + inputInfo, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-
     }
 
     private void resetCheckBoxes() {
